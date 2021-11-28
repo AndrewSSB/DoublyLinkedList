@@ -173,6 +173,7 @@ public:
     }
 
     int IndexOf(Node * node){
+
         int index = 0;
         Node * trav;
 
@@ -192,7 +193,7 @@ public:
         return IndexOf(node) != -1;
     }
 
-    string Functie(){
+    string ToString(){
         string sir = "[";
         Node * trav = Head;
 
@@ -215,20 +216,56 @@ public:
         return trav;
     }
 
-    void Print(){ // Print the LIST.
+    void InsertAt(int position, int data){ // Insert data at a given index.
+        if (position > _size || position < 0) throw "Invalid Argument";
+        if (position == _size) return Push_Back(data);
+        if (position == 0) return Push_Front(data);
+
+        Node * trav = Head;
+        int i = 0;
+        while (trav != NULL && i < position){ // We get at the exact index.
+            trav = trav->next;                // Ex: for index = 2, trav is at position 2. (0 .. 1 .. 2 ..)
+            i++;
+        }
+
+        Node * new_node = new Node(data, trav->prev, trav); // Create a new node at index.
+        /*Node * new_node = new Node();
+        new_node->data = data;
+        new_node->next = trav;      // Make the next pointer to point at trav (The node at current index).
+        new_node->prev = trav->prev; */ // Make the previous pointer to point at trav previous pointer.
+
+        trav->prev->next = new_node; // Now add the new node in list by making the trav->previous->next node to point at the new node.
+        trav->prev = new_node;       // And make the trav->previous to point at the new node.
+
+        trav = NULL;
+        delete trav;  // We don't need trav anymore.
+
+        _size++;
+    }
+
+    void PrintForward(){ // Print the LIST forward.
         Node * trav = Head;
         while (trav != NULL){
             cout << trav->data << " ";
             trav = trav->next;
         }
     }
+
+    void PrintBackward(){ // Print the LIST backward.
+        Node * trav = Tail;
+        while (trav != NULL){
+            cout << trav->data << " ";
+            trav = trav->prev;
+        }
+    }
+
 };
 
 
-int main() //Quick example of running.
+int main()
 {
-    DoublyLinkedList obj;
-    for (int i = 0; i< 200; i++){
+    DoublyLinkedList obj; //An example of using this implementation. 
+    /*for (int i = 0; i< 200; i++){
         if (i%2)
             obj.Push_Front(i*12-54*10);
         else
@@ -236,11 +273,24 @@ int main() //Quick example of running.
     }
     obj.Print();
     obj.RemoveAt(5);
-    obj.RemoveFirst();x
+    obj.RemoveFirst();
     obj.RemoveLast();
     obj.Remove(obj.GetNode(50));
+    obj.InsertAt(2, -1200);
+    cout << "\n\n";
+    obj.PrintForward();
     cout << "\n" << obj.GetNode(195)->data;
     cout << "\n" << obj.IndexOf(obj.GetTail());
-    cout << "\n" << obj.GetSize();
+    cout << "\n" << obj.GetSize();*/
+    obj.Push_Back(20);
+    obj.Push_Back(0);
+    obj.Push_Back(-40);
+    obj.Push_Back(90);
+    obj.Push_Back(70);
+    obj.InsertAt(2, -100);
+    obj.PrintForward();
+    //cout << obj.GetSize();
+    cout << "\n";
+    obj.PrintBackward();
     return 0;
 }
