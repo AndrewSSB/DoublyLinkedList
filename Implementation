@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class DoublyLinkedList{ // A Circular linked list is a LIST WHICH it's Tail node points to the head.
+class DoublyLinkedList{ // A Circular Doubly Linked List is a list WHICH it's Tail->next points to the head and the Head->previous points to the Tail. 
 private:
     class Node {
     public:
