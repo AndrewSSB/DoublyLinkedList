@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class DoublyLinkedList{ // A Circular Doubly Linked List is a list WHICH it's Tail->next points to the head and the Head->previous points to the Tail. 
+class DoublyLinkedList{ // A Circular Doubly Linked List is a list WHICH it's Tail->next points to the head and the Head->previous points to the Tail.
 private:
     class Node {
     public:
@@ -243,6 +243,21 @@ public:
         _size++;
     }
 
+    void Reverse(){ //Reversing a doubly linked list, it's not necessary to do that. (You can travel forward or backward).
+        Node * temp = Head; // Swap Head and Tail.
+        Head = Tail;
+        Tail = temp;
+
+        Node * trav = Head; // Trav start from Tail.
+
+        while (trav != NULL){
+            temp = trav->next; // Next node of each node becomes the previous
+            trav->next = trav->prev; // And the previous node of each node becomes the next
+            trav->prev = temp;       // That's the trick.
+            trav = trav -> next;
+        }
+    }
+
     void PrintForward(){ // Print the LIST forward.
         Node * trav = Head;
         while (trav != NULL){
@@ -264,14 +279,14 @@ public:
 
 int main()
 {
-    DoublyLinkedList obj; //An example of using this implementation. 
-    /*for (int i = 0; i< 200; i++){
+    DoublyLinkedList obj;
+    for (int i = 0; i< 200; i++){
         if (i%2)
             obj.Push_Front(i*12-54*10);
         else
             obj.Push_Back(i*2+37*10);
     }
-    obj.Print();
+    obj.PrintForward();
     obj.RemoveAt(5);
     obj.RemoveFirst();
     obj.RemoveLast();
@@ -281,16 +296,21 @@ int main()
     obj.PrintForward();
     cout << "\n" << obj.GetNode(195)->data;
     cout << "\n" << obj.IndexOf(obj.GetTail());
-    cout << "\n" << obj.GetSize();*/
-    obj.Push_Back(20);
+    cout << "\n" << obj.GetSize();
+    //obj.Clear();
+    /*obj.Push_Back(20);
     obj.Push_Back(0);
     obj.Push_Back(-40);
     obj.Push_Back(90);
     obj.Push_Back(70);
-    obj.InsertAt(2, -100);
-    obj.PrintForward();
+    obj.InsertAt(4, -100);
+    obj.PrintForward(); */
     //cout << obj.GetSize();
-    cout << "\n";
+    cout << "\n---------------------\n";
     obj.PrintBackward();
+    cout << "\n---------------------\n";
+
+    obj.Reverse();
+    obj.PrintForward();
     return 0;
 }
