@@ -23,5 +23,6 @@ This implementation contains:
   - Returning a node by it's index O(n);
   - Insert at a node at a given position O(n);
   - Print Forward/Backward O(n); 
+  - Reversing O(n);
 
 There are other better ways to implement it.
