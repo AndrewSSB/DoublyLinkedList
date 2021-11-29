@@ -25,4 +25,4 @@ This implementation contains:
   - Print Forward/Backward O(n); 
   - Reversing O(n);
 
-There are other better ways to implement it.
+There are other ways to implement it but the methods are the same.
