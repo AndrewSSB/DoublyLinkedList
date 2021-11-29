@@ -161,9 +161,8 @@ public:
     void RemoveNode(Node * node){
         Node * trav = Head;
 
-        if (node == NULL){ // If a given node is NULL and if maybe in list is a NULL node, delete it.
-            for (trav = Head; trav != NULL; trav = trav->next)
-                Remove(node);
+        if (node == NULL){ // If a given node is NULL we do nothing.
+            return;
         }
         else{
             for (trav = Head; trav != NULL; trav = trav->next) // Otherwise it's like a singly linked list.
