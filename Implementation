@@ -176,9 +176,8 @@ public:
         int index = 0;
         Node * trav;
 
-        if (node == NULL){//If we want to get the index of a NULL node.
-            for (trav = Head; trav != NULL; trav = trav->next, index++)
-                return index;
+        if (node == NULL){//If the node is NULL we do nothing.
+            return -1;
         }
         else{
             for (trav = Head; trav != NULL; trav = trav->next, index++) // Otherwise it's like a singly linked list.
