@@ -108,7 +108,7 @@ public:
         --_size;
 
         if (isEmpty()) Tail = NULL; //After decreasing the size of List, check if it's 0. (We move the Head node to right)
-        else Head->prev = NULL;     //Otherwise make delete the previous node.
+        else Head->prev = NULL;     //Otherwise delete the previous node.
 
         cout << "\nRemoved " << data << " from list.";
     }
