@@ -5,8 +5,9 @@ An easy implementation of a Doubly Linked List.
 
 Pros:
   - Can be traversed backwards;
+
 Cons:
-  - Takes x2 memory.
+  - Takes x2 memory;
 
 This implementation contains:
   - Deleting O(n);
