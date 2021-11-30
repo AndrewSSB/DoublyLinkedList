@@ -218,8 +218,9 @@ public:
 
     void InsertAt(int position, int data){ // Insert data at a given index.
         if (position > _size || position < 0) throw "Invalid Argument";
-        if (position == _size) return Push_Back(data);
         if (position == 0) return Push_Front(data);
+        if (isEmpty()) throw "List is empty";
+        if (position == _size) return Push_Back(data);
 
         Node * trav = Head;
         int i = 0;
