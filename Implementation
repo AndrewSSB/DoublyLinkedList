@@ -245,6 +245,7 @@ public:
     }
 
     void Reverse(){ //Reversing a doubly linked list, it's not necessary to do that. (You can travel forward or backward).
+        if (isEmpty()) {cout << "List is empty"; return;}
         Node * temp = Head; // Swap Head and Tail.
         Head = Tail;
         Tail = temp;
