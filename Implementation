@@ -204,7 +204,8 @@ public:
     }
 
     Node * GetNode(int index){ // Get the node by it's index.
-        if (index >= _size || index < 0 || Head == NULL) throw "Invalid Argument";
+        if (index >= _size || index < 0) throw "Invalid Argument";
+        if (isEmpty()) throw "List is empty";
         if (index == 0) return Head;
         if (index == _size-1) return Tail;
 
