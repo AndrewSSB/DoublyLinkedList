@@ -192,6 +192,7 @@ public:
     }
 
     string ToString(){
+        if (isEmpty()) return "\nList is empty";
         string sir = "[";
         Node * trav = Head;
 
