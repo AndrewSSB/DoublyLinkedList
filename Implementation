@@ -47,13 +47,15 @@ public:
             while (trav != NULL){
                 next1 = trav->next;
                 trav->prev = trav->next = NULL;
+                delete trav->prev; //delete them;
+                delete trav->next;
                 trav = next1;
             }
             Head = Tail = trav = next1 = NULL; // Now delete what remains.
             _size = 0;
         }
         else{
-            cout << "List is empty";
+            cout << "\nList is empty";
         }
     }
 
@@ -101,27 +103,27 @@ public:
     }
 
     void RemoveFirst(){
-        if (isEmpty()) {cout << "List is empty"; return;}
+        if (isEmpty()) {cout << "\nList is empty"; return;}
 
         int data = Head->data;
         Head = Head->next; // Make Head to point to the next node.
         --_size;
 
-        if (isEmpty()) Tail = NULL; //After decreasing the size of List, check if it's 0. (We move the Head node to right)
-        else Head->prev = NULL;     //Otherwise delete the previous node.
+        if (isEmpty()) {Tail = NULL; delete Tail;} //After decreasing the size of List, check if it's 0. (We move the Head node to right)
+        else {Head->prev = NULL; delete Head->prev;}     //Otherwise delete the previous node.
 
         cout << "\nRemoved " << data << " from list.";
     }
 
     void RemoveLast(){
-        if (isEmpty()){cout << "List is empty"; return;}
+        if (isEmpty()){cout << "\nList is empty"; return;}
 
         int data = Tail->data;
         Tail = Tail->prev;          //Same goes here, but we're using Tail insead of Head.
         --_size;
 
-        if (isEmpty()) Head = NULL; //We move the Tail node to left.
-        else Tail->next = NULL;
+        if (isEmpty()) {Head = NULL; delete Head;} //We move the Tail node to left.
+        else {Tail->next = NULL; delete Tail->next;}
 
         cout << "\nRemoved " << data << " from list.";
     }
@@ -136,6 +138,8 @@ public:
         node->prev->next = node->next; // (0) <-> (10)  x (-3) x (5)
                                        //              <->      <->
         node = node->prev = node->next = NULL;
+
+        delete node;
         --_size;
 
         cout << "\nRemoved " << data << " from list.";
@@ -275,9 +279,7 @@ public:
             trav = trav->prev;
         }
     }
-
 };
-
 
 int main()
 {
